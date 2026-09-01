@@ -1,28 +1,15 @@
-import os
-from dotenv import load_dotenv
-from openai import OpenAI
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
 
-# Load environment variables from the .env file
+from dotenv import load_dotenv
 load_dotenv()
 
-# Initialize the client
-client = OpenAI()
-
-def generate_response(prompt):
-    # Create a chat completion using the latest SDK syntax
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a concise, helpful assistant."},
-            {"role": "user", "content": prompt}
-        ]
+agent = Agent (
+    model=OpenAIChat(
+        id='gpt-4.1-mini'
     )
-    # Extract and return the text from the response
-    return response.choices[0].message.content
+)
 
-if __name__ == "__main__":
-    print("Sending request to OpenAI...")
-    reply = generate_response("Explain what an API is in one sentence.")
+agent.print_response('Hi, how are you?')
 
-    print("\n--- OpenAI Response ---")
-    print(reply)
+

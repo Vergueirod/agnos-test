@@ -16,9 +16,9 @@ agent = Agent (
     instructions=[
         "você tem acesso ao vendas/sales, busque e traga dados sobre isso",
     ],
+    #output_schema=sales,
     debug_mode=True,
 )
-
 
 agent_os = AgentOS(agents=[agent])
 app = agent_os.get_app()

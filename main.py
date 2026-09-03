@@ -1,6 +1,7 @@
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.valyu import ValyuTools
+from agno.os import AgentOS
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -16,6 +17,11 @@ agent = Agent (
         "Provide detailed analysis of the search results with relevance scores",
         "Focus on reliable sources and academic publications",
     ],
+    debug_mode=True,
 )
 
-agent.print_response('What is the main papers/articles about Neural Networking?')
+
+agent_os = AgentOS(agents=[agent])
+app = agent_os.get_app()
+
+#agent.print_response('What is the main papers/articles about Neural Networking?') -> Run by Run

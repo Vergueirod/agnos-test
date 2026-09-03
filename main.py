@@ -6,16 +6,15 @@ from agno.os import AgentOS
 from dotenv import load_dotenv
 load_dotenv()
 
+from sales import sales
+
 agent = Agent (
     model=OpenAIChat(
         id='gpt-4.1-mini'
     ),
-    tools=[ValyuTools()],
+    tools=[sales],
     instructions=[
-        "You are a research assistant that helps find academic articles and web content",
-        "Use Valyu to search for relevant and high-quality information",
-        "Provide detailed analysis of the search results with relevance scores",
-        "Focus on reliable sources and academic publications",
+        "você tem acesso ao vendas/sales, busque e traga dados sobre isso",
     ],
     debug_mode=True,
 )
